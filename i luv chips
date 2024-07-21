@@ -2962,5 +2962,3 @@ end)
 RunService.PreSimulation:Connect(function()
 	BaseCol()
 end)
-
-LoadAllAnimations()
