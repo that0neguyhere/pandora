@@ -1500,7 +1500,7 @@ function Warp(Victim,WarpToVoid)
 			CreateSound("1177785010", Victim, 10, 1)
 			local HUMANOID = Victim.Parent:FindFirstChildOfClass("Humanoid")
 			if HUMANOID ~= nil then
-				local dmg = MRANDOM(75,95)
+				local dmg = MRANDOM(0,0)
 				HUMANOID.Health = HUMANOID.Health - dmg
 				StatLabel("Normal", Victim.CFrame * CF(0, 0 + (Victim.Size.z - 1), 0), "WARPED/"..dmg, C3(0.3, 0, 0.3))
 			end
@@ -2710,79 +2710,7 @@ end
 
 
 function DealDamage(data)
-	local Who = data.Who;
-	local MinDam = data.MinimumDamage or 15;
-	local MaxDam = data.MaximumDamage or 30;
-	local MaxHP = data.MaxHP or 1e5; 
 
-	local DB = data.Debounce or .2;
-
-	local CritData = data.Crit or {}
-	local CritChance = CritData.Chance or 0;
-	local CritMultiplier = CritData.Multiplier or 1;
-
-	local DamageEffects = data.DamageFX or {}
-	local DamageType = DamageEffects.Type or "Normal"
-	local DeathFunction = DamageEffects.DeathFunction
-
-	assert(Who,"Specify someone to damage!")	
-
-	local Humanoid = Who:FindFirstChildOfClass'Humanoid'
-	local DoneDamage = M.RNG(MinDam,MaxDam) * (M.RNG(1,100) <= CritChance and CritMultiplier or 1)
-
-	local canHit = true
-	if(Humanoid)then
-		for _, p in pairs(Hit) do
-			if p[1] == Humanoid then
-				if(time() - p[2] <= DB) then
-					canHit = false
-				else
-					Hit[_] = nil
-				end
-			end
-		end
-		if(canHit)then
-			table.insert(Hit,{Humanoid,time()})
-			local HitTorso = GetTorso(Who)
-			local player = S.Players:GetPlayerFromCharacter(Who)
-			if(not player or not DontAttackPlayers and player.UserId ~= 5719877 and player.UserId ~= 61573184 and player.UserId ~= 19081129)then
-				if(Humanoid.MaxHealth >= MaxHP and Humanoid.Health > 0)then
-					print'Got kill'
-					Humanoid.Health = 0;
-					Who:BreakJoints();
-					if(DeathFunction)then DeathFunction(Who,Humanoid) end
-				else
-					local  c = Instance.new("ObjectValue",Hum)
-					c.Name = "creator"
-					c.Value = Plr
-					S.Debris:AddItem(c,0.35)
-					if(Humanoid.Health > 0)then	
-						if(Mode == 9 and not Radioactive[Who])then
-							Radioactive[Who] = {0,M.RNG(time()+4,time()+14)}
-						end
-						if(Who:FindFirstChild'Head')then
-							ShowDamage((Who.Head.CFrame * CF.N(0, 0, (Who.Head.Size.Z / 2)).p+V3.N(0,1.5,0)+V3.N(M.RNG(-2,2),0,M.RNG(-2,2))), math.floor(DoneDamage), 1.5, Core2.Color)
-						end
-						if(Humanoid.Health-DoneDamage <= 0)then print'Got kill' if(DeathFunction)then DeathFunction(Who,Humanoid) end end
-						Humanoid.Health = Humanoid.Health - DoneDamage
-					end
-
-					if(DamageType == 'Knockback' and HitTorso)then
-						local up = DamageEffects.KnockUp or 25
-						local back = DamageEffects.KnockBack or 25
-						local origin = DamageEffects.Origin or Root
-						local decay = DamageEffects.Decay or .5;
-
-						local bfos = Instance.new("BodyVelocity",HitTorso)
-						bfos.P = 20000	
-						bfos.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-						bfos.Velocity = Vector3.new(0,up,0) + (origin.CFrame.lookVector * back)
-						S.Debris:AddItem(bfos,decay)
-					end
-				end
-			end
-		end
-	end		
 end
 
 function AOEDamage(where,range,options)
