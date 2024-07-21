@@ -3451,7 +3451,6 @@ function RiddleMeThis()
 	MusicID = 1420353940
 	Pitch = 1
 	Muted = true
-	repeat swait() until Music.IsLoaded	
 	Muted = false
 	Music.TimePosition = 0
 	Chat('Riddle me this..')
