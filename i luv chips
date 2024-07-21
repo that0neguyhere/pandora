@@ -1724,7 +1724,7 @@ got: "..tostring(v), 2)
 
 	-- Initialize
 	local Plr = Plrs.LocalPlayer
-	local Char = Plr.Character
+	local Char = FakeCharacter
 	local Hum = Char.Humanoid
 
 	local BodyParts = {
