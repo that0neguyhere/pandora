@@ -1377,7 +1377,7 @@ got: "..tostring(v), 2)
 
 	local Character = FakeCharacter
 
-	local Humanoid = Character.Humanoid
+--	local Humanoid = Character.Humanoid
 
 	local Mouse = Player:GetMouse()
 
