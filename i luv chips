@@ -1137,83 +1137,6 @@ got: "..tostring(v), 2)
 		return t
 	end
 
-	--ur script
-
-	local Connection
-	Connection = game.Workspace.DescendantAdded:Connect(function(c)
-		if c.Name == "Animate" and c.Parent == Player.Character then
-			c.Enabled = false   
-			Connection:Disconnect()
-		end
-	end)
-	repeat task.wait() until game.Players.LocalPlayer.Character
-	task.wait(0.1)
-	local RealChar = Player.Character
-	RealChar.Archivable = true
-	FakeCharacter.Name = Player.Name .. "_Fake"
-	FakeCharacter.Parent = workspace
-	task.spawn(function()
-		for i, LS in ipairs(FakeCharacter:GetChildren()) do
-			if LS:IsA("LocalScript") then
-				LS.Enabled = false
-				task.wait(0.1)
-				LS.Enabled = false
-			end
-		end
-	end)
-
-	for i, Part in ipairs(FakeCharacter:GetDescendants()) do
-		if Part:IsA("BasePart")then
-			Part.Transparency = 0.75
-		end
-	end
-
-	for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
-		if Decal:IsA("Decal")then
-			Decal.Transparency = 0.75
-		end
-	end
-
-	Player.Character = FakeCharacter
-
-
-	local function MotorAngle()
-		if RealChar:FindFirstChild("Torso") then
-			for MotorName, Motor6DAngle in pairs(Motors) do
-				if RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName) then
-					RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName).CurrentAngle = Motor6DAngle
-				end
-			end
-		end
-	end
-
-	local function SetAngles()
-		if FakeCharacter:FindFirstChild("Torso") then
-			for MotorName, Motor6DAngle in pairs(Motors) do
-				if FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) then
-					local Motor = FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) 
-					local rx, ry, rz = Motor.Part1.CFrame:ToObjectSpace(FakeCharacter:FindFirstChild("Torso").CFrame):ToOrientation()
-					--Motors[MotorName] = rx
-					if Motor.Name == "Right Shoulder" then
-						Motors[MotorName] = -rx
-					end
-					if Motor.Name == "Left Shoulder" then
-						Motors[MotorName] = rx
-					end
-					if Motor.Name == "Right Hip" then
-						Motors[MotorName] = -rx
-					end
-					if Motor.Name == "Left Hip" then
-						Motors[MotorName] = rx
-					end
-					if Motor.Name == "Neck" then
-						Motors[MotorName] = -ry
-					end
-				end
-			end
-		end
-	end
-
 	-- Created by Nebula_Zorua --
 
 	-- NebulaGlitcher Demo --
@@ -1238,7 +1161,7 @@ got: "..tostring(v), 2)
 
 	local plr = plrs.LocalPlayer
 
-	local char = plr.Character
+	local char = FakeCharacter
 
 	local tor = char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso")
 
@@ -6869,13 +6792,88 @@ end)
 
 for i, Part in ipairs(FakeCharacter:GetDescendants()) do
 	if Part:IsA("BasePart")then
-		Part.Transparency = fake_transparency
+		Part.Transparency = 0.75
 	end
 end
 
 for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
 	if Decal:IsA("Decal")then
-		Decal.Transparency = fake_transparency
+		Decal.Transparency = 0.75
+	end
+end
+
+Player.Character = FakeCharacter
+
+
+local function MotorAngle()
+	if RealChar:FindFirstChild("Torso") then
+		for MotorName, Motor6DAngle in pairs(Motors) do
+			if RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName) then
+				RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName).CurrentAngle = Motor6DAngle
+			end
+		end
+	end
+end
+
+local function SetAngles()
+	if FakeCharacter:FindFirstChild("Torso") then
+		for MotorName, Motor6DAngle in pairs(Motors) do
+			if FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) then
+				local Motor = FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) 
+				local rx, ry, rz = Motor.Part1.CFrame:ToObjectSpace(FakeCharacter:FindFirstChild("Torso").CFrame):ToOrientation()
+				--Motors[MotorName] = rx
+				if Motor.Name == "Right Shoulder" then
+					Motors[MotorName] = -rx
+				end
+				if Motor.Name == "Left Shoulder" then
+					Motors[MotorName] = rx
+				end
+				if Motor.Name == "Right Hip" then
+					Motors[MotorName] = -rx
+				end
+				if Motor.Name == "Left Hip" then
+					Motors[MotorName] = rx
+				end
+				if Motor.Name == "Neck" then
+					Motors[MotorName] = -ry
+				end
+			end
+		end
+	end
+end
+
+local Connection
+Connection = game.Workspace.DescendantAdded:Connect(function(c)
+	if c.Name == "Animate" and c.Parent == Player.Character then
+		c.Enabled = false   
+		Connection:Disconnect()
+	end
+end)
+repeat task.wait() until game.Players.LocalPlayer.Character
+task.wait(0.1)
+local RealChar = Player.Character
+RealChar.Archivable = true
+FakeCharacter.Name = Player.Name .. "_Fake"
+FakeCharacter.Parent = workspace
+task.spawn(function()
+	for i, LS in ipairs(FakeCharacter:GetChildren()) do
+		if LS:IsA("LocalScript") then
+			LS.Enabled = false
+			task.wait(0.1)
+			LS.Enabled = false
+		end
+	end
+end)
+
+for i, Part in ipairs(FakeCharacter:GetDescendants()) do
+	if Part:IsA("BasePart")then
+		Part.Transparency = 0.75
+	end
+end
+
+for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
+	if Decal:IsA("Decal")then
+		Decal.Transparency = 0.75
 	end
 end
 
