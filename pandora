@@ -51,7 +51,7 @@ FLOOR = math.floor
 Animation_Speed = 3
 Frame_Speed = 1 / 60 -- (1 / 30) OR (1 / 60)
 local Speed = 20
-local SIZE = 1.4
+local SIZE = 1
 local ROOTC0 = CF(0, 0, 0) * ANGLES(RAD(-90), RAD(0), RAD(180))
 local NECKC0 = CF(0, 1, 0) * ANGLES(RAD(-90), RAD(0), RAD(180))
 local RIGHTSHOULDERC0 = CF(-0.5, 0, 0) * ANGLES(RAD(0), RAD(90), RAD(0))
@@ -543,99 +543,6 @@ local bottom = Instance.new("Pants")
 bottom.PantsTemplate = "rbxassetid://1460022985"
 bottom.Parent = Character
 bottom.Name = "Cloth"
-local PRT = CreatePart(3, Weapon, "Fabric", 0, 0, "Really black", "Hat", VT(1,1,1),false)
-PRT.Color = C3(0,0,0)
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0,0.72*SIZE,0.1) * ANGLES(RAD(15), RAD(0), RAD(0)), CF(0, 0, 0))
-CreateMesh("SpecialMesh", PRT, "FileMesh", "26768040", "", VT(1,1,1)*SIZE, VT(0,0,0))
-local PRT = CreatePart(3, Character, "Fabric", 0, 0, "Really black", "Detail", VT(1,1,1),false)
-PRT.Color = C3(1,1,1)
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0,0,-.5*SIZE), CF(0, 0, 0))
-CreateMesh("SpecialMesh", PRT, "FileMesh", "13520257", "", VT(1,1,1)*SIZE, VT(0,0,0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(1,1.2,0.2),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0,0,-.5*SIZE), CF(0, 0, 0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(0.5,0.4,0.5),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0,-0.3,-.5*SIZE), CF(0, 0, 0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(0.5,0.3,0.3),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0.25,0.25,-.5*SIZE), CF(0, 0, 0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(0.5,0.3,0.3),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(-0.25,0.25,-.5*SIZE), CF(0, 0, 0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(0.4,0.4,0.3),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(-0.17,-0.25,-.5*SIZE) * ANGLES(RAD(-15), RAD(15), RAD(0)), CF(0, 0, 0))
-local PRT = CreatePart(3, Character, "Neon", 0, 0, "Really black", "Detail", VT(0.4,0.4,0.3),false)
-PRT.Color = C3(159/255, 111/255, 183/255)
-MakeForm(PRT,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, PRT, CF(0.17,-0.25,-.5*SIZE) * ANGLES(RAD(-15), RAD(-15), RAD(0)), CF(0, 0, 0))
-
-local LASTPART = Head
-for i = 1, 24 do
-	local MATH = (1-(i/30))
-	if LASTPART == Head then
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0.8, 0.3, -0.4) * ANGLES(RAD(-25), RAD(220), RAD(90)), CF(0, 0, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	else
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0, Horn.Size.Y/2, 0) * ANGLES(RAD(5), RAD(3), RAD(0)), CF(0, -Horn.Size.Y/2, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	end
-end
-local LASTPART = Head
-for i = 1, 24 do
-	local MATH = (1-(i/30))
-	if LASTPART == Head then
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(-0.8, 0.3, -0.4) * ANGLES(RAD(-25), RAD(-220), RAD(-90)), CF(0, 0, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	else
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0, Horn.Size.Y/2, 0) * ANGLES(RAD(5), RAD(-3), RAD(0)), CF(0, -Horn.Size.Y/2, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	end
-end
-local LASTPART = Head
-for i = 1, 8 do
-	local MATH = (1-(i/14))
-	if LASTPART == Head then
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0.65, -0.3, -0.4) * ANGLES(RAD(-25), RAD(250), RAD(90)), CF(0, 0, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	else
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0, Horn.Size.Y/2, 0) * ANGLES(RAD(10), RAD(3), RAD(0)), CF(0, -Horn.Size.Y/2, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	end
-end
-local LASTPART = Head
-for i = 1, 8 do
-	local MATH = (1-(i/14))
-	if LASTPART == Head then
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(-0.65, -0.3, -0.4) * ANGLES(RAD(-25), RAD(-250), RAD(-90)), CF(0, 0, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	else
-		local Horn = CreatePart(3, Character, "SmoothPlastic", 0, 0, "Dirt brown", "Detail", VT(0.25*MATH,0.15,0.25*MATH),false)
-		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0, Horn.Size.Y/2, 0) * ANGLES(RAD(10), RAD(-3), RAD(0)), CF(0, -Horn.Size.Y/2, 0))
-		LASTPART = Horn
-		Horn.Color = C3(1-((i*4-4)/255),1-((i*6-6)/255),1-((i*3-3)/255))
-	end
-end
 local PRT = CreatePart(3, Weapon, "Metal", 0, 0, "Mid gray", "Watch", VT(1.05,0.06,1.05)*SIZE,false)
 CreateWeldOrSnapOrMotor("Weld", RightArm, RightArm, PRT, CF(0,-0.5*SIZE,0) * ANGLES(RAD(0), RAD(0), RAD(0)), CF(0, 0, 0))
 local PRT = CreatePart(3, Weapon, "Metal", 0, 0, "Mid gray", "Watch", VT(0.5,0.1,0.5)*SIZE,false)
