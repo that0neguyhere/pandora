@@ -1161,7 +1161,7 @@ got: "..tostring(v), 2)
 
 	local plr = plrs.LocalPlayer
 
-	local char = FakeCharacter
+	local char = plr.Character
 
 	local tor = char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso")
 
@@ -1381,7 +1381,7 @@ got: "..tostring(v), 2)
 
 	Backpack = Player.Backpack
 
-	Character = Player.Character
+	Character = FakeCharacter
 
 	Humanoid = Character.Humanoid
 
