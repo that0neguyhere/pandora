@@ -1470,7 +1470,7 @@ got: "..tostring(v), 2)
 	end
 
 	-- I hate New Gen FE stuff | NOTHINGNEWTODAY was here 
-    -- Why is everything so messy LoL, Hi Awesomeboy74001
+	-- Why is everything so messy LoL, Hi Awesomeboy74001
 	-- Services
 	local S = setmetatable({}, {
 		__index = function(_, i) return game:GetService(i) end
@@ -1521,7 +1521,7 @@ got: "..tostring(v), 2)
 
 	-- Initialize
 	local Plr = Plrs.LocalPlayer
-	local Char = Plr.Character
+	local Char = FakeCharacter
 	local Hum = Char.Humanoid
 
 	local BodyParts = {
@@ -1980,7 +1980,7 @@ got: "..tostring(v), 2)
 			end
 		end
 	end
--- GET OUT!
+	-- GET OUT!
 
 	--// Output Stuff \\--
 
