@@ -1375,57 +1375,51 @@ got: "..tostring(v), 2)
 
 	Player = game:GetService("Players").LocalPlayer
 
-	PlayerGui = Player.PlayerGui
+	local Character = FakeCharacter
 
-	Cam = workspace.CurrentCamera
+	local Humanoid = Character.Humanoid
 
-	Backpack = Player.Backpack
+	local Mouse = Player:GetMouse()
 
-	Character = FakeCharacter
+	local RootPart = Character["HumanoidRootPart"]
 
-	Humanoid = Character.Humanoid
+	local Torso = Character["Torso"]
 
-	Mouse = Player:GetMouse()
+	local Head = Character["Head"]
 
-	RootPart = Character["HumanoidRootPart"]
+	local RightArm = Character["Right Arm"]
 
-	Torso = Character["Torso"]
+	local LeftArm = Character["Left Arm"]
 
-	Head = Character["Head"]
+	local RightLeg = Character["Right Leg"]
 
-	RightArm = Character["Right Arm"]
+	local LeftLeg = Character["Left Leg"]
 
-	LeftArm = Character["Left Arm"]
+	local RootJoint = RootPart["RootJoint"]
 
-	RightLeg = Character["Right Leg"]
+	local Neck = Torso["Neck"]
 
-	LeftLeg = Character["Left Leg"]
+	local RightShoulder = Torso["Right Shoulder"]
 
-	RootJoint = RootPart["RootJoint"]
+	local LeftShoulder = Torso["Left Shoulder"]
 
-	Neck = Torso["Neck"]
+	local RightHip = Torso["Right Hip"]
 
-	RightShoulder = Torso["Right Shoulder"]
-
-	LeftShoulder = Torso["Left Shoulder"]
-
-	RightHip = Torso["Right Hip"]
-
-	LeftHip = Torso["Left Hip"]
+	local LeftHip = Torso["Left Hip"]
 
 
 
 
 
-	Class_Name = "Void Face"
+	local Class_Name = "Void Face"
 
 
 
-	Player_Size = 1 --Size of the player.
+	local Player_Size = 1 --Size of the player.
 
-	Animation_Speed = 3
+	local Animation_Speed = 3
 
-	Frame_Speed = 1 / 60 -- (1 / 30) OR (1 / 60)
+	local Frame_Speed = 1 / 60 -- (1 / 30) OR (1 / 60)
 
 
 
