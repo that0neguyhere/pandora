@@ -1157,13 +1157,13 @@ got: "..tostring(v), 2)
 
 
 
-	local plrs = game:GetService("Players")
+	local Players = game:GetService("Players")
 
-	local plr = plrs.LocalPlayer
+	local Player = Players.LocalPlayer
 
-	local char = plr.Character
+	local Character = FakeCharacter
 
-	local tor = char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso")
+	local Torso = Character:FindFirstChild("Torso") or Character:FindFirstChild("UpperTorso")
 
 
 
@@ -6772,81 +6772,6 @@ repeat task.wait() until game.Players.LocalPlayer.Character
 task.wait(0.1)
 local RealChar = Player.Character
 RealChar.Archivable = true
-FakeCharacter.Name = "non"
-FakeCharacter.Parent = workspace
-task.spawn(function()
-	for i, LS in ipairs(FakeCharacter:GetChildren()) do
-		if LS:IsA("LocalScript") then
-			LS.Enabled = false
-			task.wait(0.1)
-			LS.Enabled = false
-		end
-	end
-end)
-
-for i, Part in ipairs(FakeCharacter:GetDescendants()) do
-	if Part:IsA("BasePart")then
-		Part.Transparency = 0.75
-	end
-end
-
-for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
-	if Decal:IsA("Decal")then
-		Decal.Transparency = 0.75
-	end
-end
-
-Player.Character = FakeCharacter
-
-
-local function MotorAngle()
-	if RealChar:FindFirstChild("Torso") then
-		for MotorName, Motor6DAngle in pairs(Motors) do
-			if RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName) then
-				RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName).CurrentAngle = Motor6DAngle
-			end
-		end
-	end
-end
-
-local function SetAngles()
-	if FakeCharacter:FindFirstChild("Torso") then
-		for MotorName, Motor6DAngle in pairs(Motors) do
-			if FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) then
-				local Motor = FakeCharacter:FindFirstChild("Torso"):FindFirstChild(MotorName) 
-				local rx, ry, rz = Motor.Part1.CFrame:ToObjectSpace(FakeCharacter:FindFirstChild("Torso").CFrame):ToOrientation()
-				--Motors[MotorName] = rx
-				if Motor.Name == "Right Shoulder" then
-					Motors[MotorName] = -rx
-				end
-				if Motor.Name == "Left Shoulder" then
-					Motors[MotorName] = rx
-				end
-				if Motor.Name == "Right Hip" then
-					Motors[MotorName] = -rx
-				end
-				if Motor.Name == "Left Hip" then
-					Motors[MotorName] = rx
-				end
-				if Motor.Name == "Neck" then
-					Motors[MotorName] = -ry
-				end
-			end
-		end
-	end
-end
-
-local Connection
-Connection = game.Workspace.DescendantAdded:Connect(function(c)
-	if c.Name == "Animate" and c.Parent == Player.Character then
-		c.Enabled = false   
-		Connection:Disconnect()
-	end
-end)
-repeat task.wait() until game.Players.LocalPlayer.Character
-task.wait(0.1)
-local RealChar = Player.Character
-RealChar.Archivable = true
 FakeCharacter.Name = Player.Name .. "_Fake"
 FakeCharacter.Parent = workspace
 task.spawn(function()
@@ -6911,6 +6836,17 @@ local function SetAngles()
 	end
 end
 
+local KFFolder = Instance.new("Folder")
+KFFolder.Parent = game.ReplicatedStorage
+
+local function LoadAllAnimations()
+	for i, AnimID in pairs(AnimIDs) do
+		local Anim = Instance.new("Animation")
+		Anim.AnimationId = "rbxassetid://" .. AnimID
+		local LoadedAnim = RealChar:WaitForChild("Humanoid"):LoadAnimation(Anim)
+	end
+end
+
 local function BaseCol()
 	for i, Part in ipairs(RealChar:GetChildren()) do
 		if Part:IsA("BasePart")then
@@ -6928,8 +6864,11 @@ RunService.Heartbeat:Connect(function()
 	SetAngles()
 	MotorAngle()
 	RealChar.HumanoidRootPart.CFrame = FakeCharacter.Torso.CFrame
+
 end)
 
 RunService.PreSimulation:Connect(function()
 	BaseCol()
 end)
+
+LoadAllAnimations()
