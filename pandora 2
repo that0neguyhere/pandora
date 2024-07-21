@@ -1134,25 +1134,25 @@ got: "..tostring(v), 2)
 	wait(0.2)
 
 	Player = game:GetService("Players").LocalPlayer
-	PlayerGui = Player.PlayerGui
-	Cam = workspace.CurrentCamera
-	Backpack = Player.Backpack
-	Character = Player.Character
-	Humanoid = Character.Humanoid
-	Mouse = Player:GetMouse()
-	RootPart = Character["HumanoidRootPart"]
-	Torso = Character["Torso"]
-	Head = Character["Head"]
-	RightArm = Character["Right Arm"]
-	LeftArm = Character["Left Arm"]
-	RightLeg = Character["Right Leg"]
-	LeftLeg = Character["Left Leg"]
-	RootJoint = RootPart["RootJoint"]
-	Neck = Torso["Neck"]
-	RightShoulder = Torso["Right Shoulder"]
-	LeftShoulder = Torso["Left Shoulder"]
-	RightHip = Torso["Right Hip"]
-	LeftHip = Torso["Left Hip"]
+	local PlayerGui = Player.PlayerGui
+	local Cam = workspace.CurrentCamera
+	local Backpack = Player.Backpack
+	local Character = Player.Character
+	local Humanoid = Character.Humanoid
+	local Mouse = Player:GetMouse()
+	local RootPart = Character["HumanoidRootPart"]
+	local Torso = Character["Torso"]
+	local Head = Character["Head"]
+	local RightArm = Character["Right Arm"]
+	local LeftArm = Character["Left Arm"]
+	local RightLeg = Character["Right Leg"]
+	local LeftLeg = Character["Left Leg"]
+	local RootJoint = RootPart["RootJoint"]
+	local Neck = Torso["Neck"]
+	local RightShoulder = Torso["Right Shoulder"]
+	local LeftShoulder = Torso["Left Shoulder"]
+	local RightHip = Torso["Right Hip"]
+	local LeftHip = Torso["Left Hip"]
 	Character.Archivable = true
 	Player:ClearCharacterAppearance()
 
