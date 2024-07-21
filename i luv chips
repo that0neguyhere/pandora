@@ -1377,7 +1377,7 @@ got: "..tostring(v), 2)
 
 	local Character = FakeCharacter
 
---	local Humanoid = Character.Humanoid
+	--	local Humanoid = Character.Humanoid
 
 	local Mouse = Player:GetMouse()
 
@@ -1469,505 +1469,518 @@ got: "..tostring(v), 2)
 
 	end
 
+	-- I hate New Gen FE stuff | NOTHINGNEWTODAY was here 
+    -- Why is everything so messy LoL, Hi Awesomeboy74001
+	-- Services
+	local S = setmetatable({}, {
+		__index = function(_, i) return game:GetService(i) end
+	})
 
+	local CF = {
+		N = CFrame.new,
+		A = CFrame.Angles,
+		fEA = CFrame.fromEulerAnglesXYZ
+	}
 
-	--End of Values
+	local C3 = {
+		N = Color3.new,
+		RGB = Color3.fromRGB,
+		HSV = Color3.fromHSV,
+		tHSV = Color3.toHSV
+	}
 
+	local V3 = {
+		N = Vector3.new,
+		FNI = Vector3.FromNormalId,
+		A = Vector3.FromAxis
+	}
 
+	local M = {
+		C = math.cos,
+		R = math.rad,
+		S = math.sin,
+		P = math.pi,
+		RNG = math.random,
+		MRS = math.randomseed,
+		H = math.huge,
+		RRNG = function(min, max, div) return math.rad(math.random(min, max) / (div or 1)) end
+	}
 
-	--// Shortcut Variables \\--
-
-	local S = setmetatable({},{__index = function(s,i) return game:service(i) end})
-
-	local CF = {N=CFrame.new,A=CFrame.Angles,fEA=CFrame.fromEulerAnglesXYZ}
-
-	local C3 = {N=Color3.new,RGB=Color3.fromRGB,HSV=Color3.fromHSV,tHSV=Color3.toHSV}
-
-	local V3 = {N=Vector3.new,FNI=Vector3.FromNormalId,A=Vector3.FromAxis}
-
-	local M = {C=math.cos,R=math.rad,S=math.sin,P=math.pi,RNG=math.random,MRS=math.randomseed,H=math.huge,RRNG = function(min,max,div) return math.rad(math.random(min,max)/(div or 1)) end}
-
-	local R3 = {N=Region3.new}
+	local R3 = {
+		N = Region3.new
+	}
 
 	local De = S.Debris
-
 	local WS = workspace
-
 	local Lght = S.Lighting
-
 	local RepS = S.ReplicatedStorage
-
 	local IN = Instance.new
-
 	local Plrs = S.Players
-
 	local UIS = S.UserInputService
-
 	local CAS = S.ContextActionService
 
-	--// Initializing \\--
-
+	-- Initialize
 	local Plr = Plrs.LocalPlayer
-
 	local Char = Plr.Character
-
 	local Hum = Char.Humanoid
 
-	local RArm = Char["Right Arm"]
-
-	local LArm = Char["Left Arm"]
-
-	local RLeg = Char["Right Leg"]
-
-	local LLeg = Char["Left Leg"]	
-
-	local Root = Char.HumanoidRootPart
-
-	local Torso = Char.Torso
-
-	local Head = Char.Head
+	local BodyParts = {
+		RArm = Char["Right Arm"],
+		LArm = Char["Left Arm"],
+		RLeg = Char["Right Leg"],
+		LLeg = Char["Left Leg"],
+		Root = Char.HumanoidRootPart,
+		Torso = Char.Torso,
+		Head = Char.Head
+	}
 
 	local NeutralAnims = true
-
 	local Attack = false
-
-	local Debounces = {Debounces={}}
-
+	local Debounces = { Debounces = {} }
 	local Mouse = Plr:GetMouse()
-
 	local Hit = {}
-
 	local Sine = 0
-
 	local Change = 1
-
-	local PlrGui = Plr:FindFirstChildOfClass'PlayerGui'
-
-	local Hue = 0;
-
+	local PlrGui = Plr:FindFirstChildOfClass("PlayerGui")
+	local Hue = 0
 	local Combo = 1
-
 	local BloodPuddles = {}
-
-
-
 	local DontAttackPlayers = false
-
-
-
-	local BurnInterval = .7
-
-
-
+	local BurnInterval = 0.7
 	local Radioactive = {}
-
-
-
-	local Hits = 0;
-
+	local Hits = 0
 	local HitTime = time()
+	local MaxHits = 60
 
-
-
-	local MaxHits = 60;
-
-
-
-	local Effects = IN("Folder",Char)
-
+	local Effects = IN("Folder", Char)
 	Effects.Name = "Effects"
 
-
-
-	--Invencible Script by 1x1x1x1IAMbck or Shackluster!:
-
-
-
-	function AoEDamage(position,radius,min,max,maxstrength,beserk,critrate,critmultiplier,CanBeDodgedByJumping,DoesWarp,Instakill,HasChain)
-
-
-
-		local dmg = math.random(min,max)
-
-		for i,v in ipairs(workspace:GetChildren()) do
-
-			if v:FindFirstChild("HitBy"..Player.Name) == nil then
-
-				local body = v:GetChildren()
-
-				for part = 1, #body do
-
-					if(v:FindFirstChild("HitBy"..Player.Name) == nil and (body[part].ClassName == "Part" or body[part].ClassName == "MeshPart") and v ~= Character) then
-
-						if(body[part].Position - position).Magnitude < radius then
-
-							if v.ClassName == "Model" then
-
-								if v:FindFirstChildOfClass("Humanoid") then
-
-									local HUMAN = v:FindFirstChildOfClass("Humanoid")
-
-									if HUMAN.Health ~= 0 then
-
-										if HasChain == true then
-
-											local defence = Instance.new("BoolValue",v)
-
-											defence.Name = ("HitBy"..Player.Name)
-
-											game:GetService("Debris"):AddItem(defence, 1)
-
-											coroutine.resume(coroutine.create(function()
-
-												local TORSO = v:FindFirstChild("Torso") or v:FindFirstChild("UpperTorso")
-
-												if TORSO then
-
-													local PART = IT("Part",Effects)
-
-													PART.Anchored = true
-
-													PART.CanCollide = false
-
-													PART.Transparency = 1
-
-													PART.CFrame = CF(position)
-
-													Debris:AddItem(PART,15)
-
-													local A = IT("Attachment",PART)
-
-													--TORSO.Anchored = true
-
-													local Front = CreatePart(3, Effects, "Neon", 1, 1, "Really black", "Chain head", VT(1,1,1),false)
-
-													Front.CFrame = CF(position)
-
-													Front.CanCollide = true
-
-													CreateSound(HITWEAPONSOUNDS[MRANDOM(1,#HITWEAPONSOUNDS)], Front, 10, 1)
-
-													local B = IT("Attachment",Front)
-
-													local ChainLink = IT("Beam",Effects)
-
-													ChainLink.Texture = "rbxassetid://1262544869"
-
-													ChainLink.TextureSpeed = 0
-
-													ChainLink.FaceCamera = true
-
-													ChainLink.Width0 = 3
-
-													ChainLink.Attachment0 = A
-
-													ChainLink.Attachment1 = B
-
-													ChainLink.TextureMode = "Static"
-
-													local bv = Instance.new("BodyVelocity") 
-
-													bv.maxForce = Vector3.new(1e9, 1e9, 1e9)
-
-													bv.velocity = CF(Front.Position,TORSO.Position).lookVector*500
-
-													bv.Parent = Front
-
-													bv.Name = "MOVE"
-
-													coroutine.resume(coroutine.create(function()
-
-														Swait(30)
-
-														bv:remove()
-
-														local POS = Front.Position
-
-														Front.CanCollide = false
-
-														local onefourth = POS:Lerp(position, 0.25) + Vector3.new(0,0,0)
-
-														local threefourths = POS:Lerp(position, 0.75) + Vector3.new(0,0,0)
-
-														for i = 0, 1, 0.07 do
-
-															Swait()
-
-															Front.CFrame = CFrame.new(newBezier(POS, onefourth, threefourths, position, i))
-
-														end
-
-														Front:remove()
-
-														ChainLink:remove()
-
-													end))
-
-													local harm = Front.Touched:Connect(function(hit)
-
-														impale(Front,hit)
-
-													end)
-
-												end
-
-											end))
-
-										elseif DoesWarp == true then
-
-											local defence = Instance.new("BoolValue",v)
-
-											defence.Name = ("HitBy"..Player.Name)
-
-											game:GetService("Debris"):AddItem(defence, 0.001)
-
-											local TORSO = v:FindFirstChild("HumanoidRootPart") or v:FindFirstChild("Torso") or v:FindFirstChild("UpperTorso")
-
-											Warp(TORSO,Instakill)
-
-										else
-
-											if CanBeDodgedByJumping == true then
-
-												if body[part].Position.Y < position.Y+5 then
-
-													if math.random(1,100) < critrate+1 then
-
-														HUMAN.Health = HUMAN.Health - dmg*critmultiplier
-
-														StatLabel("Normal", body[part].CFrame * CF(0, 0 + (body[part].Size.z - 1), 0), "CRIT/"..dmg*critmultiplier, C3(255/255, 0, 0))
-
-													else
-
-														HUMAN.Health = HUMAN.Health - dmg
-
-														StatLabel("Normal", body[part].CFrame * CF(0, 0 + (body[part].Size.z - 1), 0), dmg, C3(0, 0, 0))
-
-													end
-
-													local defence = Instance.new("BoolValue",v)
-
-													defence.Name = ("HitBy"..Player.Name)
-
-													game:GetService("Debris"):AddItem(defence, 0.01)
-
-												end
-
-											else
-
-												if beserk == true then
-
-													HUMAN.Health = 0
-
-												end
-
-												if math.random(1,100) < critrate+1 then
-
-													HUMAN.Health = HUMAN.Health - dmg*critmultiplier
-
-													StatLabel("Normal", body[part].CFrame * CF(0, 0 + (body[part].Size.z - 1), 0), "CRIT/"..dmg*critmultiplier, C3(255/255, 0, 0))
-
-												else
-
-													HUMAN.Health = HUMAN.Health - dmg
-
-													StatLabel("Normal", body[part].CFrame * CF(0, 0 + (body[part].Size.z - 1), 0), dmg, C3(0, 0, 0))
-
-												end
-
-												local defence = Instance.new("BoolValue",v)
-
-												defence.Name = ("HitBy"..Player.Name)
-
-												game:GetService("Debris"):AddItem(defence, 0.01)
-
-												Humanoid.Died:connect(function()
-
-													ATTACK = true
-
-												end)
-
-
-
-											end
-
-										end
-
-									end
-
-								end
-
-							end
-
-							--body[part].Velocity = CFrame.new(position,body[part].Position).lookVector*5*maxstrength
-
-						end
-
-					end
-
-				end
-
-				if v.ClassName == "Part" then
-
-					if v.Anchored == false and (v.Position - position).Magnitude < radius then
-
-						v.Velocity = CFrame.new(position,v.Position).lookVector*5*maxstrength
-
-					end
-
-				end
-
-			end
-
-		end
-
+	-- Helper Functions
+	local function CreatePart(size, parent, material, transparency, reflectance, color, name, position, anchored)
+		local part = IN("Part")
+		part.Size = size
+		part.Parent = parent
+		part.Material = material
+		part.Transparency = transparency
+		part.Reflectance = reflectance
+		part.Color = color
+		part.Name = name
+		part.Position = position
+		part.Anchored = anchored
+		return part
 	end
 
+	local function CreateSound(id, parent, volume, pitch)
+		local sound = IN("Sound")
+		sound.SoundId = id
+		sound.Parent = parent
+		sound.Volume = volume
+		sound.Pitch = pitch
+		return sound
+	end
 
+	local function Swait(n)
+		for i = 1, n do
+			wait()
+		end
+	end
 
-	function Warp(Victim,WarpToVoid)
+	-- AoEDamage Function
+	local function AoEDamage(position, radius, min, max, maxstrength, beserk, critrate, critmultiplier, CanBeDodgedByJumping, DoesWarp, Instakill, HasChain)
+		local dmg = M.RNG(min, max)
+		for _, v in ipairs(WS:GetChildren()) do
+			if not v:FindFirstChild("HitBy" .. Plr.Name) then
+				for _, part in ipairs(v:GetChildren()) do
+					if (part.ClassName == "Part" or part.ClassName == "MeshPart") and (part.Position - position).Magnitude < radius and v ~= Char then
+						if v.ClassName == "Model" and v:FindFirstChildOfClass("Humanoid") then
+							local HUMAN = v:FindFirstChildOfClass("Humanoid")
+							if HUMAN.Health > 0 then
+								if HasChain then
+									local defence = IN("BoolValue", v)
+									defence.Name = "HitBy" .. Plr.Name
+									De:AddItem(defence, 1)
 
+									coroutine.wrap(function()
+										local torso = v:FindFirstChild("Torso") or v:FindFirstChild("UpperTorso")
+										if torso then
+											local part = CreatePart(V3.N(1, 1, 1), Effects, "Neon", 1, 1, C3.N(0, 0, 0), "Chain head", position, true)
+											local attachment = IN("Attachment", part)
+											local front = CreatePart(V3.N(1, 1, 1), Effects, "Neon", 1, 1, C3.N(0, 0, 0), "Front", position, true)
+											front.CanCollide = true
+											CreateSound(HITWEAPONSOUNDS[M.RNG(1, #HITWEAPONSOUNDS)], front, 10, 1)
+
+											local attachmentFront = IN("Attachment", front)
+											local chainLink = IN("Beam", Effects)
+											chainLink.Texture = "rbxassetid://1262544869"
+											chainLink.TextureSpeed = 0
+											chainLink.FaceCamera = true
+											chainLink.Width0 = 3
+											chainLink.Attachment0 = attachment
+											chainLink.Attachment1 = attachmentFront
+											chainLink.TextureMode = "Static"
+
+											local bv = IN("BodyVelocity")
+											bv.MaxForce = Vector3.new(1e9, 1e9, 1e9)
+											bv.Velocity = (CF(front.Position, torso.Position).LookVector * 500)
+											bv.Parent = front
+
+											coroutine.wrap(function()
+												Swait(30)
+												bv:Destroy()
+
+												local pos = front.Position
+												front.CanCollide = false
+
+												local onefourth = pos:Lerp(position, 0.25)
+												local threefourths = pos:Lerp(position, 0.75)
+
+												for i = 0, 1, 0.07 do
+													Swait()
+													front.CFrame = CFrame.new(newBezier(pos, onefourth, threefourths, position, i))
+												end
+
+												front:Destroy()
+												chainLink:Destroy()
+											end)()
+
+											front.Touched:Connect(function(hit)
+												impale(front, hit)
+											end)
+										end
+									end)()
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- Additional Code Integration Here
+	-- Ensure to adjust any new variables or functions to avoid conflicts
+	-- Add your new functions or features below this comment
+
+	-- Example of Adding a New Function
+	local function NewFunction()
+		-- Your new function code here
+	end
+
+	-- Example of Adding New Variables
+	local NewVariable = 0
+
+	-- Call your new functions or use new variables as needed
+	NewFunction()
+
+	-- Existing Services and Variables Initialization
+
+	-- Services
+	local S = setmetatable({}, {
+		__index = function(_, i) return game:GetService(i) end
+	})
+
+	local CF = {
+		N = CFrame.new,
+		A = CFrame.Angles,
+		fEA = CFrame.fromEulerAnglesXYZ
+	}
+
+	local C3 = {
+		N = Color3.new,
+		RGB = Color3.fromRGB,
+		HSV = Color3.fromHSV,
+		tHSV = Color3.toHSV
+	}
+
+	local V3 = {
+		N = Vector3.new,
+		FNI = Vector3.FromNormalId,
+		A = Vector3.FromAxis
+	}
+
+	local M = {
+		C = math.cos,
+		R = math.rad,
+		S = math.sin,
+		P = math.pi,
+		RNG = math.random,
+		MRS = math.randomseed,
+		H = math.huge,
+		RRNG = function(min, max, div) return math.rad(math.random(min, max) / (div or 1)) end
+	}
+
+	local R3 = {
+		N = Region3.new
+	}
+
+	local De = S.Debris
+	local WS = workspace
+	local Lght = S.Lighting
+	local RepS = S.ReplicatedStorage
+	local IN = Instance.new
+	local Plrs = S.Players
+	local UIS = S.UserInputService
+	local CAS = S.ContextActionService
+
+	-- Initialize
+	local Plr = Plrs.LocalPlayer
+	local Char = Plr.Character
+	local Hum = Char.Humanoid
+
+	local BodyParts = {
+		RArm = Char["Right Arm"],
+		LArm = Char["Left Arm"],
+		RLeg = Char["Right Leg"],
+		LLeg = Char["Left Leg"],
+		Root = Char.HumanoidRootPart,
+		Torso = Char.Torso,
+		Head = Char.Head
+	}
+
+	local NeutralAnims = true
+	local Attack = false
+	local Debounces = { Debounces = {} }
+	local Mouse = Plr:GetMouse()
+	local Hit = {}
+	local Sine = 0
+	local Change = 1
+	local PlrGui = Plr:FindFirstChildOfClass("PlayerGui")
+	local Hue = 0
+	local Combo = 1
+	local BloodPuddles = {}
+	local DontAttackPlayers = false
+	local BurnInterval = 0.7
+	local Radioactive = {}
+	local Hits = 0
+	local HitTime = time()
+	local MaxHits = 60
+
+	local Effects = IN("Folder", Char)
+	Effects.Name = "Effects"
+
+	-- Helper Functions
+	local function CreatePart(size, parent, material, transparency, reflectance, color, name, position, anchored)
+		local part = IN("Part")
+		part.Size = size
+		part.Parent = parent
+		part.Material = material
+		part.Transparency = transparency
+		part.Reflectance = reflectance
+		part.Color = color
+		part.Name = name
+		part.Position = position
+		part.Anchored = anchored
+		return part
+	end
+
+	local function CreateSound(id, parent, volume, pitch)
+		local sound = IN("Sound")
+		sound.SoundId = id
+		sound.Parent = parent
+		sound.Volume = volume
+		sound.Pitch = pitch
+		return sound
+	end
+
+	local function Swait(n)
+		for i = 1, n do
+			wait()
+		end
+	end
+
+	-- AoEDamage Function
+	local function AoEDamage(position, radius, min, max, maxstrength, beserk, critrate, critmultiplier, CanBeDodgedByJumping, DoesWarp, Instakill, HasChain)
+		local dmg = M.RNG(min, max)
+		for _, v in ipairs(WS:GetChildren()) do
+			if not v:FindFirstChild("HitBy" .. Plr.Name) then
+				for _, part in ipairs(v:GetChildren()) do
+					if (part.ClassName == "Part" or part.ClassName == "MeshPart") and (part.Position - position).Magnitude < radius and v ~= Char then
+						if v.ClassName == "Model" and v:FindFirstChildOfClass("Humanoid") then
+							local HUMAN = v:FindFirstChildOfClass("Humanoid")
+							if HUMAN.Health > 0 then
+								if HasChain then
+									local defence = IN("BoolValue", v)
+									defence.Name = "HitBy" .. Plr.Name
+									De:AddItem(defence, 0.001)
+
+									coroutine.wrap(function()
+										local torso = v:FindFirstChild("HumanoidRootPart") or v:FindFirstChild("Torso") or v:FindFirstChild("UpperTorso")
+										if torso then
+											local part = CreatePart(V3.N(1, 1, 1), Effects, "Neon", 1, 1, C3.N(0, 0, 0), "Chain head", position, true)
+											local attachment = IN("Attachment", part)
+											local front = CreatePart(V3.N(1, 1, 1), Effects, "Neon", 1, 1, C3.N(0, 0, 0), "Front", position, true)
+											front.CanCollide = true
+											CreateSound(HITWEAPONSOUNDS[M.RNG(1, #HITWEAPONSOUNDS)], front, 10, 1)
+
+											local attachmentFront = IN("Attachment", front)
+											local chainLink = IN("Beam", Effects)
+											chainLink.Texture = "rbxassetid://1262544869"
+											chainLink.TextureSpeed = 0
+											chainLink.FaceCamera = true
+											chainLink.Width0 = 3
+											chainLink.Attachment0 = attachment
+											chainLink.Attachment1 = attachmentFront
+											chainLink.TextureMode = "Static"
+
+											local bv = IN("BodyVelocity")
+											bv.MaxForce = Vector3.new(1e9, 1e9, 1e9)
+											bv.Velocity = (CF(front.Position, torso.Position).LookVector * 500)
+											bv.Parent = front
+
+											coroutine.wrap(function()
+												Swait(30)
+												bv:Destroy()
+
+												local pos = front.Position
+												front.CanCollide = false
+
+												local onefourth = pos:Lerp(position, 0.25)
+												local threefourths = pos:Lerp(position, 0.75)
+
+												for i = 0, 1, 0.07 do
+													Swait()
+													front.CFrame = CFrame.new(newBezier(pos, onefourth, threefourths, position, i))
+												end
+
+												front:Destroy()
+												chainLink:Destroy()
+											end)()
+
+											front.Touched:Connect(function(hit)
+												impale(front, hit)
+											end)
+										end
+									end)()
+								elseif DoesWarp then
+									local defence = IN("BoolValue", v)
+									defence.Name = "HitBy" .. Plr.Name
+									De:AddItem(defence, 0.001)
+
+									local torso = v:FindFirstChild("HumanoidRootPart") or v:FindFirstChild("Torso") or v:FindFirstChild("UpperTorso")
+									Warp(torso, Instakill)
+								else
+									if CanBeDodgedByJumping and part.Position.Y < position.Y + 5 then
+										if M.RNG(1, 100) < critrate + 1 then
+											HUMAN.Health = HUMAN.Health - dmg * critmultiplier
+											StatLabel("Normal", part.CFrame * CF(0, 0 + (part.Size.Z - 1), 0), "CRIT/" .. dmg * critmultiplier, C3.N(1, 0, 0))
+										else
+											HUMAN.Health = HUMAN.Health - dmg
+											StatLabel("Normal", part.CFrame * CF(0, 0 + (part.Size.Z - 1), 0), dmg, C3.N(0, 0, 0))
+										end
+
+										local defence = IN("BoolValue", v)
+										defence.Name = "HitBy" .. Plr.Name
+										De:AddItem(defence, 0.01)
+									else
+										if beserk then
+											HUMAN.Health = 0
+										end
+
+										if M.RNG(1, 100) < critrate + 1 then
+											HUMAN.Health = HUMAN.Health - dmg * critmultiplier
+											StatLabel("Normal", part.CFrame * CF(0, 0 + (part.Size.Z - 1), 0), "CRIT/" .. dmg * critmultiplier, C3.N(1, 0, 0))
+										else
+											HUMAN.Health = HUMAN.Health - dmg
+											StatLabel("Normal", part.CFrame * CF(0, 0 + (part.Size.Z - 1), 0), dmg, C3.N(0, 0, 0))
+										end
+
+										local defence = IN("BoolValue", v)
+										defence.Name = "HitBy" .. Plr.Name
+										De:AddItem(defence, 0.01)
+
+										HUMAN.Died:Connect(function()
+											Attack = true
+										end)
+									end
+								end
+							end
+						end
+					end
+
+					if v.ClassName == "Part" and not v.Anchored and (v.Position - position).Magnitude < radius then
+						v.Velocity = CFrame.new(position, v.Position).LookVector * 5 * maxstrength
+					end
+				end
+			end
+		end
+	end
+
+	-- Warp Function
+	local function Warp(Victim, WarpToVoid)
 		Victim.Anchored = true
 
-		coroutine.resume(coroutine.create(function()
-
-			local GUI,GUI2 = CreateGUICircle(Victim)
-
+		coroutine.wrap(function()
+			local GUI, GUI2 = CreateGUICircle(Victim)
 			CreateSound("1208650519", Victim, 10, 1)
 
 			for i = 1, 100 do
-
 				Swait()
-
-				GUI.Size = GUI.Size + UDim2.new(0.2,0,0.2,0)
-
+				GUI.Size = GUI.Size + UDim2.new(0.2, 0, 0.2, 0)
 				GUI2.Rotation = GUI2.Rotation + 4
-
 			end
 
 			CastWarpOutlines(Victim.Parent)
 
-			if WarpToVoid == false then
-
-				Victim.CFrame = Victim.CFrame * CF(MRANDOM(-65,65),0,MRANDOM(-65,65))
-
+			if not WarpToVoid then
+				Victim.CFrame = Victim.CFrame * CF(M.RNG(-65, 65), 0, M.RNG(-65, 65))
 				CreateSound("1177785010", Victim, 10, 1)
 
-				local HUMANOID = Victim.Parent:FindFirstChildOfClass("Humanoid")
-
-				if HUMANOID ~= nil then
-
-					local dmg = MRANDOM(75,95)
-
-					HUMANOID.Health = HUMANOID.Health - dmg
-
-					StatLabel("Normal", Victim.CFrame * CF(0, 0 + (Victim.Size.z - 1), 0), "WARPED/"..dmg, C3(0.3, 0, 0.3))
-
+				local HUMAN = Victim.Parent:FindFirstChildOfClass("Humanoid")
+				if HUMAN then
+					local dmg = M.RNG(75, 95)
+					HUMAN.Health = HUMAN.Health - dmg
+					StatLabel("Normal", Victim.CFrame * CF(0, 0 + (Victim.Size.Z - 1), 0), "WARPED/" .. dmg, C3.N(0.3, 0, 0.3))
 				end
 
 				for i = 1, 50 do
-
 					Swait()
-
-					GUI.Size = GUI.Size - UDim2.new(0.4,0,0.4,0)
-
+					GUI.Size = GUI.Size - UDim2.new(0.4, 0, 0.4, 0)
 					GUI2.Rotation = GUI2.Rotation - 8
-
 				end
 
 				Victim.Anchored = false
-
-				GUI:remove()
-
-			elseif WarpToVoid == true then
-
+				GUI:Destroy()
+			else
 				CastWarpOutlines(Victim.Parent)
 
-				q = Victim.Parent:GetChildren()
-
-				for i = 1, #q do
-
-					if q[i] ~= Victim then
-
-						q[i]:remove()
-
+				for _, child in ipairs(Victim.Parent:GetChildren()) do
+					if child ~= Victim then
+						child:Destroy()
 					end
-
 				end
 
 				CreateSound("1177785010", Victim, 10, 1)
-
 				Victim.Transparency = 1
 
 				for i = 1, 50 do
-
 					Swait()
-
-					GUI.Size = GUI.Size - UDim2.new(0.4,0,0.4,0)
-
+					GUI.Size = GUI.Size - UDim2.new(0.4, 0, 0.4, 0)
 					GUI2.Rotation = GUI2.Rotation - 8
-
 				end
 
-				Victim.Parent:remove()
-
+				Victim.Parent:Destroy()
 			end
-
-		end))
-
+		end)()
 	end
 
-
-
-	function killnearest(position,range,maxstrength)
-
-		for i,v in ipairs(workspace:GetChildren()) do
-
-			local body = v:GetChildren()
-
-			for part = 1, #body do
-
-				if((body[part].ClassName == "Part" or body[part].ClassName == "MeshPart") and v ~= Character) then
-
-					if(body[part].Position - position).Magnitude < range then
-
-						if v.ClassName == "Model" then
-
-							v:BreakJoints()
-
-						end
-
-						--table.insert(Effects2,{body[part],"Disappear",0.02,2,2,2,2})
-
-						body[part].Velocity = CFrame.new(position,body[part].Position).lookVector*5*maxstrength
-
+	-- killnearest Function
+	local function killnearest(position, range, maxstrength)
+		for _, v in ipairs(WS:GetChildren()) do
+			for _, part in ipairs(v:GetChildren()) do
+				if (part.ClassName == "Part" or part.ClassName == "MeshPart") and (part.Position - position).Magnitude < range and v ~= Char then
+					if v.ClassName == "Model" then
+						v:BreakJoints()
 					end
-
+					part.Velocity = CFrame.new(position, part.Position).LookVector * 5 * maxstrength
 				end
-
 			end
 
-			if v.ClassName == "Part" then
-
-				if v.Anchored == false and (v.Position - position).Magnitude < range then
-
-					--table.insert(Effects2,{v,"Disappear",0.02,2,2,2,2})
-
-					v.Velocity = CFrame.new(position,v.Position).lookVector*5*maxstrength
-
-				end
-
+			if v.ClassName == "Part" and not v.Anchored and (v.Position - position).Magnitude < range then
+				v.Velocity = CFrame.new(position, v.Position).LookVector * 5 * maxstrength
 			end
-
 		end
-
 	end
-
-	--End of Ivencible script..
-
-
-
-
+-- GET OUT!
 
 	--// Output Stuff \\--
 
