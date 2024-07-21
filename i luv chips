@@ -1227,8 +1227,6 @@ got: "..tostring(v), 2)
 
 	wait(1 / 60)
 
-	loadstring(game:GetObjects("rbxassetid://5425999987")[1].Source)()
-
 	local plr = game.Players.LocalPlayer
 	local mouse = plr:GetMouse()
 	local char = plr.Character
