@@ -1511,7 +1511,7 @@ got: "..tostring(v), 2)
 
 	local Char = Plr.Character
 
-	local Hum = Char:FindFirstChildOfClass'Humanoid'
+	local Hum = Char["Humanoid"]
 
 	local RArm = Char["Right Arm"]
 
@@ -1521,7 +1521,7 @@ got: "..tostring(v), 2)
 
 	local LLeg = Char["Left Leg"]	
 
-	local Root = Char:FindFirstChild'HumanoidRootPart'
+	local Root = Char["HumanoidRootPart"]
 
 	local Torso = Char.Torso
 
@@ -6839,14 +6839,6 @@ end
 local KFFolder = Instance.new("Folder")
 KFFolder.Parent = game.ReplicatedStorage
 
-local function LoadAllAnimations()
-	for i, AnimID in pairs(AnimIDs) do
-		local Anim = Instance.new("Animation")
-		Anim.AnimationId = "rbxassetid://" .. AnimID
-		local LoadedAnim = RealChar:WaitForChild("Humanoid"):LoadAnimation(Anim)
-	end
-end
-
 local function BaseCol()
 	for i, Part in ipairs(RealChar:GetChildren()) do
 		if Part:IsA("BasePart")then
@@ -6870,5 +6862,3 @@ end)
 RunService.PreSimulation:Connect(function()
 	BaseCol()
 end)
-
-LoadAllAnimations()
