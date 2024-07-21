@@ -6162,7 +6162,7 @@ got: "..tostring(v), 2)
 
 
 
-		local hitfloor,posfloor,norm = workspace:FindPartOnRay(Ray.new(Root.CFrame.p,((CFrame.new(Root.Position,Root.Position - Vector3.new(0,1,0))).lookVector).unit * (4*PlayerSize)), Char)
+		--local hitfloor,posfloor,norm = workspace:FindPartOnRay(Ray.new(Root.CFrame.p,((CFrame.new(Root.Position,Root.Position - Vector3.new(0,1,0))).lookVector).unit * (4*PlayerSize)), Char)
 
 
 
