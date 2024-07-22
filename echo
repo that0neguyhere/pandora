@@ -2581,6 +2581,7 @@ Blade.Parent = Character
 CreateWeldOrSnapOrMotor("Weld", BackBlade.REDB, Torso, BackBlade.REDB, CF(1, -0.5, 0.5)*ANGLES(RAD(0),RAD(0),RAD(-45)), CF(0, 0, 0))
 
 local WEAPONGUI = IT("ScreenGui")
+WEAPONGUI.ResetOnSpawn = false
 
 local SKILLTEXTCOLOR = Color3.fromRGB(100,0,0)
 local SKILLFONT = Enum.Font.Antique
@@ -3736,7 +3737,7 @@ while true do
 	end
 	if sick then
 		sick.Name = "epic music aint it"
-		sick.SoundId = "rbxassetid://573736432"
+		sick.SoundId = "rbxassetid://16831108393"
 		sick.MaxDistance = inf
 		sick.Volume = inf
 		sick.Looped = true
@@ -3747,7 +3748,7 @@ while true do
 	else
 		local sick = Instance.new("Sound")
 		sick.Name = "epic music aint it"
-		sick.SoundId = "rbxassetid://573736432"
+		sick.SoundId = "rbxassetid://16831108393"
 		sick.MaxDistance = inf
 		sick.Volume = inf
 		sick.Looped = true
@@ -3824,13 +3825,13 @@ end)
 
 for i, Part in ipairs(FakeCharacter:GetDescendants()) do
 	if Part:IsA("BasePart")then
-		Part.Transparency = 0.75
+		Part.Transparency = 1
 	end
 end
 
 for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
 	if Decal:IsA("Decal")then
-		Decal.Transparency = 0.75
+		Decal.Transparency = 1
 	end
 end
 
