@@ -1747,6 +1747,7 @@ got: "..tostring(v), 2)
 	-- Properties
 
 	Chill_Gui_Bro.Name = "Chill_Gui_Bro"
+	Chill_Gui_Bro.ResetOnSpawn = false
 
 	Header.Name = "Header"
 	Header.Parent = Chill_Gui_Bro
@@ -1970,6 +1971,9 @@ got: "..tostring(v), 2)
 		else
 			ischatting = false
 			Chat_Toggle_Label.Text = "~»False«~"
+		end
+		if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+			Chill_Gui_Bro:Destroy()
 		end
 	end)
 end)()
