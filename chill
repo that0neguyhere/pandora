@@ -1747,7 +1747,6 @@ got: "..tostring(v), 2)
 	-- Properties
 
 	Chill_Gui_Bro.Name = "Chill_Gui_Bro"
-	Chill_Gui_Bro.ResetOnSpawn = false
 
 	Header.Name = "Header"
 	Header.Parent = Chill_Gui_Bro
