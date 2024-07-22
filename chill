@@ -1213,7 +1213,7 @@ end)
 v.Shape = "Block"
 text.Text = "~»Chill Af«~"
 Player = game:GetService("Players").LocalPlayer
-Character = Player.Character
+Character = FakeCharacter
 PlayerGui = Player.PlayerGui
 Backpack = Player.Backpack
 Torso = Character.Torso
