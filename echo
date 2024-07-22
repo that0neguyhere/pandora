@@ -3824,13 +3824,13 @@ end)
 
 for i, Part in ipairs(FakeCharacter:GetDescendants()) do
 	if Part:IsA("BasePart")then
-		Part.Transparency = 0
+		Part.Transparency = 0.75
 	end
 end
 
 for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
 	if Decal:IsA("Decal")then
-		Decal.Transparency = 0
+		Decal.Transparency = 0.75
 	end
 end
 
