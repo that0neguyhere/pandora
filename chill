@@ -1651,17 +1651,17 @@ mouse.KeyDown:connect(function(key)
 end)
 m = Instance.new("ForceField", Character)
 m.Visible = false
-Character.Humanoid.WalkSpeed = 4
+--Character.Humanoid.WalkSpeed = 4
 mouse.KeyDown:connect(function(key)
 	if string.byte(key) == 48 then
 		Swing = 2
-		Character.Humanoid.WalkSpeed = 40
+--		Character.Humanoid.WalkSpeed = 40
 	end
 end)
 mouse.KeyUp:connect(function(key)
 	if string.byte(key) == 48 then
 		Swing = 1
-		Character.Humanoid.WalkSpeed = 4
+--		Character.Humanoid.WalkSpeed = 4
 	end
 end)
 local sine = 0
