@@ -21,7 +21,7 @@ PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
 Character = FakeCharacter
-Humanoid = Character.Humanoid
+--Humanoid = Character.Humanoid
 Mouse = Player:GetMouse()
 RootPart = Character["HumanoidRootPart"]
 Torso = Character["Torso"]
@@ -1235,15 +1235,7 @@ function PAW_HAHA2(LOC,AIMTO,OUCH)
 		local HIT,POS = CastProperRay(LOC,AIMPOS,1000,Character)
 		local DISTANCE = (POS - LOC).Magnitude
 		if HIT then
-			local HUM = nil
-			if HIT.Parent:FindFirstChildOfClass("Humanoid") then
-				HUM = HIT.Parent:FindFirstChildOfClass("Humanoid")
-			elseif HIT.Parent.Parent:FindFirstChildOfClass("Humanoid") then
-				HUM = HIT.Parent.Parent:FindFirstChildOfClass("Humanoid")
-			end
-			if HUM then
-				ApplyDamage(HUM,OUCH+MRANDOM(-3,10))
-			end
+			
 		end
 		WACKYEFFECT({Time = 20, EffectType = "Block", Size = VT(0,0,0), Size2 = VT(0.3,0.3,0.3), Transparency = 0, Transparency2 = 1, CFrame = CF(POS), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = BRICKC"New Yeller".Color, SoundID = nil, SoundPitch = 1, SoundVolume = 4})
 		WACKYEFFECT({Time = 20, EffectType = "Box", Size = VT(0,0,DISTANCE), Size2 = VT(0.1,0.1,DISTANCE), Transparency = 0.6, Transparency2 = 1, CFrame = CF(LOC,POS)*CF(0,0,-DISTANCE/2), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = BRICKC"New Yeller".Color, SoundID = nil, SoundPitch = nil, SoundVolume = nil})
