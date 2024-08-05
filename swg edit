@@ -16,13 +16,6 @@ PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
 if lplr == Player then
-	Cam.CameraSubject = Character:FindFirstChildOfClass("Humanoid")
-end
-if lplr == Player then
-	game:GetService("RunService").RenderStepped:Connect(function()
-		Player.Character = Character
-		Cam.CameraSubject = Character:FindFirstChildOfClass("Humanoid")
-	end)
 end
 Character.PrimaryPart = Character.HumanoidRootPart
 Character.Parent = workspace
