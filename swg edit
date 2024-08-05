@@ -1220,26 +1220,7 @@ function Ragdoll(Character2,CharTorso,KeepArms)
 end
 
 function CreateRing(SIZE,DOESROT,ROT,WAIT,CFRAME,COLOR,GROW)
-	local wave = CreatePart(3, Effects, "Neon", 0, 0.5, BRICKC(COLOR), "Effect", VT(0,0,0))
-	local mesh = IT("SpecialMesh",wave)
-	mesh.MeshType = "FileMesh"
-	mesh.MeshId = "http://www.roblox.com/asset/?id=3270017"
-	mesh.Scale = SIZE
-	mesh.Offset = VT(0,0,0)
-	wave.CFrame = CFRAME
-	coroutine.resume(coroutine.create(function(PART)
-		for i = 1, WAIT do
-			Swait()
-			mesh.Scale = mesh.Scale + GROW
-			if DOESROT == true then
-				wave.CFrame = wave.CFrame * CFrame.fromEulerAnglesXYZ(0,ROT,0)
-			end
-			wave.Transparency = wave.Transparency + (0.5/WAIT)
-			if wave.Transparency > 0.99 then
-				wave:remove()
-			end
-		end
-	end))
+
 end
 
 function MagicSphere(SIZE,WAIT,CFRAME,COLOR,GROW)
