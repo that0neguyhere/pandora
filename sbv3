@@ -14,7 +14,7 @@ local Players=game:GetService("Players")
 Player=game.Players.LocalPlayer
 Mouse=Player:GetMouse()
 
-Character=Player.Character
+Character=FakeCharacter
 PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
