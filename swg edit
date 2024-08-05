@@ -1,6 +1,6 @@
 lplr = game.Players.LocalPlayer
 Player = game.Players.LocalPlayer
-Character = Player.Character
+Character = FakeCharacter
 Mouse = Player:GetMouse()
 --//===================================================\\
 --||             FCRCZ SWG BY RobloxGT25
