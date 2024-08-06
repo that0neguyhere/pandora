@@ -109,7 +109,7 @@ wait(0.1)
 
 Player = game.Players.LocalPlayer
 lplr = Player
-Character = FakeCharacter
+Character = lplr.Character
 PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
@@ -1632,7 +1632,7 @@ local function characterfixer()
 			Character:Destroy()
 		end)
 
-		Character = FakeCharacter
+		Character = game.Players.LocalPlayer.Character
 
 		--Character.Name = randomstring()
 
@@ -1663,7 +1663,7 @@ local function characterfixer()
 		RootPart = Character.HumanoidRootPart
 		if lplr.Name == USERNAME then
 			RootPart.CFrame = charpos.Value
-			FakeCharacter = nil
+			Player.Character = nil
 		end
 		Hole3 = RightArm
 		ThiccHole = RightArm
