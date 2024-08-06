@@ -1,3 +1,4 @@
+script = Instance.new('LocalScript')
 local currentinstance=nil
 local prs=pairs
 local function setprops(t)
@@ -40,10 +41,8 @@ OffDeqas = true
 
 
 local USERNAME = Player.Name
-
-
-
-local Character = FakeCharacter
+Player.Character.Archivable = true
+local Character = Player.Character:Clone()
 
 Loud = Instance.new("SoundGroup",game:GetService("SoundService"))
 
@@ -124,6 +123,7 @@ HUGE = math.huge
 local alreadyfixing = false
 
 
+repeat wait() until Character:FindFirstChild('HumanoidRootPart')
 Character.PrimaryPart = Character.HumanoidRootPart
 Character.Parent = workspace
 Humanoid = Character.Humanoid
@@ -451,7 +451,7 @@ coroutine.resume(coroutine.create(function()
 	for i,v in pairs(lplr:FindFirstChildWhichIsA("PlayerGui"):WaitForChild("Chat"):GetDescendants()) do
 		if v:IsA('TextLabel') then
 			if
-				v.Text == "|Rtms v2.7 by dddaaa111222/OwlUniversal| |Helper Olegopana/YeahUniversal| |Anti suck it is a fact|" then
+				v.Text == "|Rtms v2.7 by (i skidded this lmfao)" then
 				InstanceToAlter = v
 				break
 			end
@@ -913,80 +913,6 @@ end
 
 
 
-
-if lplr.Name == USERNAME then
-	gui = Instance.new("ScreenGui")
-	gui.Name = randomstring()
-	CharFixerButton = Instance.new("TextButton",gui)
-	CharFixerButton.TextScaled = true
-	CharFixerButton.Font = "Code"
-	CharFixerButton.Name = randomstring()
-	CharFixerButton.BorderSizePixel = 0
-	CharFixerButton.BackgroundTransparency = .5
-	CharFixerButton.TextStrokeColor3 = Color3.fromRGB(0,0+75*sick.PlaybackLoudness/200,0+75*sick.PlaybackLoudness/200)
-	CharFixerButton.TextStrokeTransparency = 0
-	CharFixerButton.BackgroundColor3 = Color3.new(.5,.5,.5)
-	CharFixerButton.Text = "Character Fixer"
-	CharFixerButton.Size = UDim2.new(.25,0,0,36)
-	CharFixerButton.AnchorPoint = Vector2.new(.5,1)
-	CharFixerButton.Position = UDim2.new(.4,0,0,0)
-	gui.Parent = Player:FindFirstChildOfClass("PlayerGui")
-	CharFixerButton.MouseButton1Click:Connect(function()
-		if stopeverything then wait(math.huge) end
-		Character:Destroy()
-	end)
-	local function fixgui()
-		fixinggui = true
-		local oldcolor = CharFixerButton.TextColor3
-		pcall(function()
-			gui:Destroy()
-		end)
-		gui = Instance.new("ScreenGui")
-		gui.Name = randomstring()
-		CharFixerButton = Instance.new("TextButton",gui)
-		CharFixerButton.TextScaled = true
-		CharFixerButton.Font = "Code"
-		CharFixerButton.Name = randomstring()
-		CharFixerButton.BorderSizePixel = 0
-		CharFixerButton.BackgroundTransparency = .5
-		CharFixerButton.TextStrokeColor3 = Color3.fromRGB(0,0+75*sick.PlaybackLoudness/200,0+75*sick.PlaybackLoudness/200)
-		CharFixerButton.TextStrokeTransparency = 0
-		CharFixerButton.TextColor3 = oldcolor
-		CharFixerButton.BackgroundColor3 = Color3.new(.5,.5,.5)
-		CharFixerButton.Text = "Character Fixer"
-		CharFixerButton.Size = UDim2.new(.25,0,0,36)
-		CharFixerButton.AnchorPoint = Vector2.new(.5,1)
-		CharFixerButton.Position = UDim2.new(.4,0,0,0)
-		gui.Parent = Player:FindFirstChildOfClass("PlayerGui")
-		CharFixerButton.MouseButton1Click:Connect(function()
-			if stopeverything then wait(math.huge) end
-			Character:Destroy()
-		end)
-		fixinggui = false
-	end
-	Player:FindFirstChildOfClass("PlayerGui").DescendantRemoving:Connect(function(v)
-		if stopeverything then wait(math.huge) end
-		if not fixinggui then
-			if v == gui or v:IsDescendantOf(gui) then
-				fixgui()
-			end
-		end
-	end)
-	coroutine.resume(coroutine.create(function()
-		local noob = 0
-		repeat if stopeverything then wait(math.huge) end noob = noob + game:GetService("RunService").RenderStepped:Wait() until noob >= .1
-		while true do
-			if not fixinggui and not alreadyfixing then
-				CharFixerButton.TextColor3 = Color3.fromRGB(0,0+75*sick.PlaybackLoudness/200,0+75*sick.PlaybackLoudness/200)
-			end
-			swait()
-		end
-	end))
-end
-
-
-
-
 Character.Head:FindFirstChildOfClass("Decal").Texture = "rbxassetid://7249205037"
 
 local CreationFolder = IT("Folder",Character)
@@ -1090,34 +1016,6 @@ larm = Character["Left Arm"]
 tors = Character.Torso
 halocolor = BrickColor.new("Pastel light blue")
 
-local ScreenGui = Instance.new("ScreenGui") 
-ScreenGui.DisplayOrder = 2147483647
-ScreenGui.Name = " "
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.IgnoreGuiInset = true
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Archivable = false
-local ViewportFrame = Instance.new("ViewportFrame")
-ViewportFrame.Name = " "
-ViewportFrame.Size = UDim2.new(1, 0, 1, 0)
-ViewportFrame.BackgroundTransparency = 1
-ViewportFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ViewportFrame.Parent = ScreenGui
-ViewportFrame.CurrentCamera = workspace.CurrentCamera
-ViewportFrame.Archivable = false
-local workspace3 = Instance.new("WorldModel")
-workspace3.Name = " "
-workspace3.Archivable = false
-workspace3.Parent = ViewportFrame
-ScreenGui.Parent = game:GetService("Players").LocalPlayer:FindFirstChildOfClass("PlayerGui")
---Character.Parent = workspace3
-
-
-if ViewFrameRem == 0 and alreadyfixing == false then
-	Character.Parent = workspace
-elseif ViewFrameRem == 1 then
-	Character.Parent = workspace3
-end
 
 
 Humanoid.DisplayDistanceType = "None"
@@ -1234,13 +1132,13 @@ local function characterfixer()
 
 		Character.Head:FindFirstChildOfClass("Decal").Texture = "rbxassetid://7249205037"
 
-pcall(function()
-if RealChar:FindFirstChild('HumanoidRootPart') then
-RealChar.HumanoidRootPart.CFrame = FakeCharacter.Torso.CFrame
-else
-print('no hrp?')
-end
-end)		
+		pcall(function()
+			if RealChar:FindFirstChild('HumanoidRootPart') then
+				RealChar.HumanoidRootPart.CFrame = FakeCharacter.Torso.CFrame
+			else
+				print('no hrp?')
+			end
+		end)		
 		for i = 1, 15 do
 			local MATH = (1-(i/16))
 			if LASTPART == Head then
@@ -1362,23 +1260,6 @@ end)
 end
 
 
-
-workspace.DescendantRemoving:Connect(function(v)
-	if OffDeqas == true then
-		if not alreadyfixing then
-
-			if v == Character or v:IsDescendantOf(Character) then
-				if not v:IsDescendantOf(Effects) and not v:IsA("Vector3Value") and not  v:IsA("Weld")  and not  v:IsA("Model")  and not  v:IsA("LocalScript") and not  v:IsA("WeldConstraint") and not  v:IsA("ManualWeld") and not  v:IsA("Folder") and not  v:IsA("DistortionSoundEffect") and not v:IsA("Sound") and not v:IsA("BodyMover") and not v:IsA("DataModelMesh") and not v:IsA("BillboardGui") and not v:IsA("ParticleEmitter") and not v:IsA("TextLabel") and not v:IsA("WorldModel") and not v:IsA("ViewportFrame") and not v:IsA("ScreenGui") and not v:IsA("PlayerGui") and not v:IsA("Player") and not v:IsA("Players") then
-					--characterfixer()
-
-				elseif v == sick then
-
-					--characterfixer()
-				end
-			end
-		end
-	end	
-end)
 
 function warnedpeople2(whom)
 	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -2485,27 +2366,6 @@ local rotationvalue = Instance.new("CFrameValue",script)
 function cn2(x,y,z)
 	return cn(x*S,y*S,z*S)
 end
-
-local blockedguis = {"sup","AllahGui","SnakeVenomSS","polishtoilet","nooties","IY_GUI","IY_JumpScare"}
-function checkgui(v) 
-	if v:IsA("ScreenGui") then
-		for i = 1,#blockedguis do
-			if v.Name == blockedguis[i] then
-				v.Enabled = false
-				game:GetService("Debris"):AddItem(v,.01)
-				chatfunc("Removed abusive GUI named \""..blockedguis[i].."\"")
-			end
-		end
-	end
-end
-
-for i,v in pairs(lplr:FindFirstChildOfClass("PlayerGui"):GetChildren()) do
-	checkgui(v)
-end
-lplr:FindFirstChildOfClass("PlayerGui").ChildAdded:Connect(function(v)
-	if stopeverything then wait(math.huge) end
-	checkgui(v)
-end)
 
 function attacks:part(v,supresickound)
 	if not table.find(partexclusion,v) then
