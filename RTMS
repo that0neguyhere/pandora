@@ -1220,7 +1220,7 @@ function wingsglitcher ()
 	lwing1 = CreateParta(m,1,1,"Neon",maincolor)
 	CreateMesh(handle,"Brick",0.5,0.5,0.5)
 	lwing1weld = CreateWeld(lwing1,handle,lwing1,3,0,0,math.rad(5),math.rad(0),math.rad(12.5),0,0,0,math.rad(0),math.rad(0),math.rad(0))
-
+--[[
 	wed = CreateParta(mw1,0,0,"Neon",halocolor)
 	CreateMesh(wed,"Wedge",0.05,0.5,0.5)
 	CreateWeld(wed,lwing1,wed,0,0,0.25,math.rad(0),math.rad(90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
@@ -1237,7 +1237,7 @@ function wingsglitcher ()
 	wed = CreateParta(mw1,0,0,"Neon",halocolor)
 	CreateMesh(wed,"Wedge",0.05,3,0.5)
 	CreateWeld(wed,lwing1,wed,0,-1.75,0.25,math.rad(90),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
-
+]]
 	tl1 = Instance.new('Trail',wed)
 	tl1.Attachment0 = A1
 	tl1.Attachment1 = A0
@@ -1251,7 +1251,7 @@ function wingsglitcher ()
 	lwing2 = CreateParta(m,1,1,"Neon",maincolor)
 	CreateMesh(handle,"Brick",0.5,0.5,0.5)
 	lwing2weld = CreateWeld(lwing2,handle,lwing2,4,1,0,math.rad(10),math.rad(0),math.rad(25),0,0,0,math.rad(0),math.rad(0),math.rad(0))
-
+--[[
 	wed = CreateParta(mw1,0,0,"Neon",halocolor)
 	CreateMesh(wed,"Wedge",0.05,0.5,0.5)
 	CreateWeld(wed,lwing2,wed,0,0,0.25,math.rad(0),math.rad(90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
@@ -1268,7 +1268,7 @@ function wingsglitcher ()
 	wed = CreateParta(mw1,0,0,"Neon",halocolor)
 	CreateMesh(wed,"Wedge",0.05,3,0.5)
 	CreateWeld(wed,lwing2,wed,0,-1.75,0.25,math.rad(90),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
-
+]]
 	tl2 = Instance.new('Trail',wed)
 	tl2.Attachment0 = A1
 	tl2.Attachment1 = A0
