@@ -109,7 +109,7 @@ wait(0.1)
 
 Player = game.Players.LocalPlayer
 lplr = Player
-Character = lplr.Character
+Character = lplr.Character or lplr.CharacterAdded:Wait()
 PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
